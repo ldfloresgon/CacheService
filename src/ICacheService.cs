@@ -10,8 +10,9 @@ public interface ICacheService
     /// <param name="options">The cache options for this value.</param>
     /// <param name="getter">The fucntion that gets the value from source.</param>
     /// <param name="cancellationToken">Optional. The System.Threading.CancellationToken used to propagate notifications that the operation should be canceled.</param>
+    /// <param name="setOnlyInMemory">If true, value will be cached only in memory cache.</param>
     /// <returns>The cached/read requested value.</returns>
-    ValueTask<T?> GetOrSetAsync<T>(string key, CacheServiceOptions? options, Func<CancellationToken, ValueTask<T?>> getter, CancellationToken cancellationToken = default) where T : class;
+    ValueTask<T?> GetOrSetAsync<T>(string key, CacheServiceOptions? options, Func<CancellationToken, ValueTask<T?>> getter, CancellationToken cancellationToken = default, bool setOnlyInMemory = false) where T : class;
 
     /// <summary>
     /// 

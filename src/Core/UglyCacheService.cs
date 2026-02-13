@@ -27,7 +27,7 @@ internal sealed partial class UglyCacheService : ICacheService
         _useJobManager = _jobManager is not null;
     }
 
-    public async ValueTask<T?> GetOrSetAsync<T>(string key, CacheServiceOptions? options, Func<CancellationToken, ValueTask<T?>> getter, CancellationToken cancellationToken = default) where T : class
+    public async ValueTask<T?> GetOrSetAsync<T>(string key, CacheServiceOptions? options, Func<CancellationToken, ValueTask<T?>> getter, CancellationToken cancellationToken = default, bool setOnlyInMemory = false) where T : class
     {
         cancellationToken.ThrowIfCancellationRequested();
         var ops = options ?? _defaultOptions;
@@ -49,7 +49,7 @@ internal sealed partial class UglyCacheService : ICacheService
             }
         }
 
-        return await TryGetFromSourceAsync<T>(key, getter, ops, cancellationToken);
+        return await TryGetFromSourceAsync<T>(key, getter, ops, cancellationToken, setOnlyInMemory);
     }
 
     public Task InvalidateAsync(string key, CancellationToken cancellationToken = default)
