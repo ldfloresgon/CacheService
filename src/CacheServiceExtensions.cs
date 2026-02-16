@@ -11,8 +11,8 @@ public static class CacheServiceExtensions
     /// <param name="getter">The fucntion that gets the value from source.</param>
     /// <param name="cancellationToken">Optional. The System.Threading.CancellationToken used to propagate notifications that the operation should be canceled.</param>
     /// <returns>The cached/read requested value.</returns>
-    public static ValueTask<T?> GetOrSetAsync<T>(this ICacheService service, string key, Func<CancellationToken, ValueTask<T?>> getter, CancellationToken cancellationToken = default, bool setOnlyInMemory = false) where T : class
-        => service.GetOrSetAsync(key, default, getter, cancellationToken, setOnlyInMemory);
+    public static ValueTask<T?> GetOrSetAsync<T>(this ICacheService service, string key, Func<CancellationToken, ValueTask<T?>> getter, CancellationToken cancellationToken = default) where T : class
+        => service.GetOrSetAsync(key, default, getter, cancellationToken);
 
     /// <summary>
     /// Gets or Sets a value with the given key.
@@ -23,8 +23,8 @@ public static class CacheServiceExtensions
     /// <param name="getter">The fucntion that gets the value from source.</param>
     /// <param name="cancellationToken">Optional. The System.Threading.CancellationToken used to propagate notifications that the operation should be canceled.</param>
     /// <returns>The cached/read requested value.</returns>
-    public static ValueTask<T?> GetOrSetAsync<T>(this ICacheService service, string key, Func<T?> getter, CancellationToken cancellationToken = default, bool setOnlyInMemory = false) where T : class
-        => service.GetOrSetAsync(key, default, ct => ValueTask.FromResult(getter()), cancellationToken, setOnlyInMemory);
+    public static ValueTask<T?> GetOrSetAsync<T>(this ICacheService service, string key, Func<T?> getter, CancellationToken cancellationToken = default) where T : class
+        => service.GetOrSetAsync(key, default, ct => ValueTask.FromResult(getter()), cancellationToken);
 
     /// <summary>
     /// Gets or Sets a value with the given key.
@@ -36,6 +36,6 @@ public static class CacheServiceExtensions
     /// <param name="getter">The fucntion that gets the value from source.</param>
     /// <param name="cancellationToken">Optional. The System.Threading.CancellationToken used to propagate notifications that the operation should be canceled.</param>
     /// <returns>The cached/read requested value.</returns>
-    public static ValueTask<T?> GetOrSetAsync<T>(this ICacheService service, string key, CacheServiceOptions options, Func<T?> getter, CancellationToken cancellationToken = default, bool setOnlyInMemory = false) where T : class
-        => service.GetOrSetAsync(key, options, ct => ValueTask.FromResult(getter()), cancellationToken, setOnlyInMemory);
+    public static ValueTask<T?> GetOrSetAsync<T>(this ICacheService service, string key, CacheServiceOptions options, Func<T?> getter, CancellationToken cancellationToken = default) where T : class
+        => service.GetOrSetAsync(key, options, ct => ValueTask.FromResult(getter()), cancellationToken);
 }

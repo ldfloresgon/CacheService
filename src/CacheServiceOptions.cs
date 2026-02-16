@@ -19,4 +19,9 @@ public class CacheServiceOptions
     /// Force read value from value getter and update all caches.
     /// </summary>
     public bool ForceRefresh { get; set; } = false;
+
+    /// <summary>
+    /// To store a specific value just within Memory cache.
+    /// </summary>
+    public bool setOnlyInMemory { get; set; } = false;
 }
