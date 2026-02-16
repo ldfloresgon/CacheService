@@ -8,7 +8,7 @@ sealed partial class UglyCacheService
         if (result is not null)
         {
             TrySetMemory(key, ops, result);
-            if(!ops.setOnlyInMemory) TrySetDistributed(key, ops, result);
+            if (!ops.SetOnlyInMemory) TrySetDistributed(key, ops, result);
         }
 
         return result;

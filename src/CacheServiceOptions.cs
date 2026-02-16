@@ -23,5 +23,5 @@ public class CacheServiceOptions
     /// <summary>
     /// Force store value only on Memory cache.
     /// </summary>
-    public bool setOnlyInMemory { get; set; } = false;
+    public bool SetOnlyInMemory { get; set; } = false;
 }
