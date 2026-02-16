@@ -147,5 +147,15 @@ public class CacheService_Should : IntegrationTestBase
         Assert.Equal(serialized, distributedValue);
     }
 
+    [Fact]
+    public async Task Cache_Value_Only_In_Memory_When_Option_Is_Set()
+    {
+        var actual = await Target.GetOrSetAsync(key, new CacheServiceOptions { setOnlyInMemory = true }, () => expected, CancellationToken);
+        Assert.Equal(expected, actual);
+        
+        Assert.True(MemoryCache.ContainsKey(key));
+        Assert.False(DistributedCache.ContainsKey(key));
+    }
+
     private sealed record TestData(string Id, string Field1, string Field2);
 }
