@@ -21,7 +21,7 @@ public class CacheServiceOptions
     public bool ForceRefresh { get; set; } = false;
 
     /// <summary>
-    /// To store a specific value just within Memory cache.
+    /// Force store value only on Memory cache.
     /// </summary>
     public bool setOnlyInMemory { get; set; } = false;
 }
