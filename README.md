@@ -158,11 +158,14 @@ The parameters are:
 
 `CacheServiceOptions` is a class that contains the options to use in the `ICacheService` methods. It has the following properties:
 
-| Property | Description | Type |
-| -------- | ----------- | ---- |
-| Memory | Sets the configuration for the in memory cache | `CacheOptions` |
-| Distributed | Sets the configuration for the distributed cache | `CacheOptions` |
-| ForceRefresh | Sets if you want to force the refresh of the cache value | `bool` |
+| Property | Description | Type | Default |
+| -------- | ----------- | ---- | ---- |
+| Memory | Sets the configuration for the in memory cache | `CacheOptions` | `new` |
+| Distributed | Sets the configuration for the distributed cache | `CacheOptions` | `new` |
+| UseMemoryCache | Sets if you want to manage `IMemoryCache` with `ICacheService` | `bool` | `true` |
+| UseDistributedCache | Sets if you want to manage `IDistributedCache` with `ICacheService` | `bool` | `true` |
+| ForceRefresh | Sets if you want to force the refresh of the cache value | `bool` | `false` |
+
 
 ### CacheOptions
 
@@ -189,8 +192,8 @@ And you can configure the `ICacheService` with the following options:
 | Property | Description | Type | Default |
 | -------- | ----------- | ---- | ------- |
 | DefaultOptions | Sets the default options to use in the `ICacheService` methods | `CacheServiceOptions` | |
-| UseMemoryCache | Sets if you want to manage `IMemoryCache` with `ICacheService` | `bool` | `true` |
-| UseDistributedCache | Sets if you want to manage `IDistributedCache` with `ICacheService` | `bool` | `true` |
+| UseMemoryCache | Gets if you want to manage `IMemoryCache` with `ICacheService` | `bool` |
+| UseDistributedCache | Gets if you want to manage `IDistributedCache` with `ICacheService` | `bool` |
 | BackgroundJobMode | Sets how you want to use the background process to automatically update your cache values<br/>*Options are: `None`, `HostedService` or `Timer`* | `BackgroundJobMode` | `BackgroundJobMode.HostedService` |
 | BackgroundJobInterval | Sets the background process to update cache value execution interval | `TimeSpan` | `TimeSpan.FromMinutes(1)` |
 | BackgroundJobIgnoreExceptions | Sets if you want to ignore exceptions in the background process | `bool` | `false` |
