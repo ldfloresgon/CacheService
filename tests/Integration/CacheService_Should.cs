@@ -148,13 +148,24 @@ public class CacheService_Should : IntegrationTestBase
     }
 
     [Fact]
-    public async Task Cache_Value_Only_In_Memory_When_Option_Is_Set()
+    public async Task Cache_Value_Only_On_InMemory_When_UseDistributedCache_is_False()
     {
-        var actual = await Target.GetOrSetAsync(key, new CacheServiceOptions { UseDistributedCache = false }, () => expected, CancellationToken);
-        Assert.Equal(expected, actual);
+        await Target.GetOrSetAsync(key, new CacheServiceOptions { UseDistributedCache = false }, () => expected, CancellationToken);
 
         Assert.True(MemoryCache.ContainsKey(key));
         Assert.False(DistributedCache.ContainsKey(key));
+    }
+
+    [Fact]
+    public async Task Cache_Value_Only_On_InMemory_When_UseMemoryCache_is_False()
+    {
+        await Target.GetOrSetAsync(key, new CacheServiceOptions { UseMemoryCache = false }, () => expected, CancellationToken);
+        
+        // Set operation is async, so we need to wait a bit
+        await Task.Delay(1_000);
+
+        Assert.False(MemoryCache.ContainsKey(key));
+        Assert.True(DistributedCache.ContainsKey(key));
     }
 
     private sealed record TestData(string Id, string Field1, string Field2);
