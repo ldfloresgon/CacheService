@@ -150,7 +150,7 @@ public class CacheService_Should : IntegrationTestBase
     [Fact]
     public async Task Cache_Value_Only_In_Memory_When_Option_Is_Set()
     {
-        var actual = await Target.GetOrSetAsync(key, new CacheServiceOptions { SetOnlyInMemory = true }, () => expected, CancellationToken);
+        var actual = await Target.GetOrSetAsync(key, new CacheServiceOptions { UseDistributedCache = false }, () => expected, CancellationToken);
         Assert.Equal(expected, actual);
 
         Assert.True(MemoryCache.ContainsKey(key));

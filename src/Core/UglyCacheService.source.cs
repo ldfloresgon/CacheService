@@ -7,8 +7,8 @@ sealed partial class UglyCacheService
         var result = await getter(cancellationToken);
         if (result is not null)
         {
-            TrySetMemory(key, ops, result);
-            if (!ops.SetOnlyInMemory) TrySetDistributed(key, ops, result);
+            if (ops.UseMemoryCache) TrySetMemory(key, ops, result);
+            if (ops.UseDistributedCache) TrySetDistributed(key, ops, result);
         }
 
         return result;

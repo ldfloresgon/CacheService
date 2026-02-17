@@ -21,7 +21,14 @@ public class CacheServiceOptions
     public bool ForceRefresh { get; set; } = false;
 
     /// <summary>
-    /// Force store value only on Memory cache.
+    /// Gets or sets if you want to use <see cref="Microsoft.Extensions.Caching.Memory.IMemoryCache" /> inside <see cref="ICacheService" />.
     /// </summary>
-    public bool SetOnlyInMemory { get; set; } = false;
+    /// <remarks>Default value is true.</remarks>
+    public bool UseMemoryCache { get; set; } = true;
+
+    /// <summary>
+    /// Gets or sets if you want to use <see cref="Microsoft.Extensions.Caching.Distributed.IDistributedCache" /> inside <see cref="ICacheService" />.
+    /// </summary>
+    /// // <remarks>Default value is <see cref="true" />.</remarks>
+    public bool UseDistributedCache { get; set; } = true;
 }
