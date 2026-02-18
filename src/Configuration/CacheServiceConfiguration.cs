@@ -13,11 +13,13 @@ public class CacheServiceConfiguration
     /// <summary>
     /// Gets if you want to use <see cref="Microsoft.Extensions.Caching.Memory.IMemoryCache" /> inside <see cref="ICacheService" />.
     /// </summary>
+     [Obsolete("Use DefaultOptions.UseMemoryCache instead.")]
     public bool UseMemoryCache => DefaultOptions.UseMemoryCache;
 
     /// <summary>
     /// Gets if you want to use <see cref="Microsoft.Extensions.Caching.Distributed.IDistributedCache" /> inside <see cref="ICacheService" />.
     /// </summary>
+    [Obsolete("Use DefaultOptions.UseDistributedCache instead.")]
     public bool UseDistributedCache => DefaultOptions.UseDistributedCache;
 
     /// <summary>
