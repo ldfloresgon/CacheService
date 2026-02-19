@@ -19,4 +19,16 @@ public class CacheServiceOptions
     /// Force read value from value getter and update all caches.
     /// </summary>
     public bool ForceRefresh { get; set; } = false;
+
+    /// <summary>
+    /// Gets or sets if you want to use <see cref="Microsoft.Extensions.Caching.Memory.IMemoryCache" /> inside <see cref="ICacheService" />.
+    /// </summary>
+    /// <remarks>Default value is true.</remarks>
+    public bool UseMemoryCache { get; set; } = true;
+
+    /// <summary>
+    /// Gets or sets if you want to use <see cref="Microsoft.Extensions.Caching.Distributed.IDistributedCache" /> inside <see cref="ICacheService" />.
+    /// </summary>
+    /// // <remarks>Default value is <see cref="true" />.</remarks>
+    public bool UseDistributedCache { get; set; } = true;
 }

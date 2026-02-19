@@ -37,15 +37,18 @@ internal sealed partial class UglyCacheService : ICacheService
 
         if (!(options?.ForceRefresh ?? false))
         {
-            if (TryGetFromMemory(key, ref result))
+            if (ops.UseMemoryCache && TryGetFromMemory(key, ref result))
             {
                 return result;
             }
 
-            result = await TryGetFromDistributedAsync<T>(key, ops, cancellationToken);
-            if (result is not null)
+            if (ops.UseDistributedCache)
             {
-                return result;
+                result = await TryGetFromDistributedAsync<T>(key, ops, cancellationToken);
+                if (result is not null)
+                {
+                    return result;
+                }
             }
         }
 
