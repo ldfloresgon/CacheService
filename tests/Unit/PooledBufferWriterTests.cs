@@ -21,6 +21,8 @@ public class PooledBufferWriterTests
 		writer.GetSpan(32);
 		writer.Advance(31);
 		writer.Advance(1); // This should not throw
+
+		Assert.True(true); // If we reach this point, the test passes
 	}
 
 	[Fact]

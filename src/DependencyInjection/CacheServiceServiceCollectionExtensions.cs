@@ -42,13 +42,11 @@ public static class CacheServiceServiceCollectionExtensions
     {
         services.AddSingleton<MemoryCacheFactory>(sp => () =>
         {
-             var configuration = sp.GetRequiredService<IOptions<CacheServiceConfiguration>>();
-             return configuration.Value.UseMemoryCache ? sp.GetRequiredService<IMemoryCache>() : default;
+             return sp.GetRequiredService<IMemoryCache>();
         });
         services.AddSingleton<DistributedCacheFactory>(sp => () =>
         {
-             var configuration = sp.GetRequiredService<IOptions<CacheServiceConfiguration>>();
-             return configuration.Value.UseDistributedCache ? sp.GetRequiredService<IDistributedCache>() : default;
+             return sp.GetRequiredService<IDistributedCache>();
         });
         services.AddSingleton<JobManagerFactory>(sp => () =>
         {

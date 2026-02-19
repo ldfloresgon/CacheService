@@ -28,13 +28,13 @@ internal class DefaultJobManager : IJobManager
             return;
         }
 
-        if (_configuration.UseMemoryCache)
+        if (options.UseMemoryCache)
         {
             var memoryJob = new MemoryJob<T>(_memoryCacheFactory, new JobParameters<T>(key, options.Memory, valueGetter), _loggerFactory.CreateLogger<MemoryJob<T>>());
             _jobs.AddOrUpdate($"MemoryJob_{key}", memoryJob, (k, j) => j.UpdateJob(memoryJob));
         }
 
-        if (_configuration.UseDistributedCache)
+        if (options.UseDistributedCache)
         {
             var distributedJob = new DistributedJob<T>(_distributedCacheFactory, _serializerFactory, new JobParameters<T>(key, options.Distributed, valueGetter), _loggerFactory.CreateLogger<DistributedJob<T>>());
             _jobs.AddOrUpdate($"DistributedJob_{key}", distributedJob, (k, j) => j.UpdateJob(distributedJob));

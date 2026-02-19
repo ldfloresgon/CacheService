@@ -211,6 +211,23 @@ You can see the benchmark project in the `benchmarks/CacheService.Benchmark` fol
 
 The latest results are:
 
+**Microsoft.Extensions.Caching.Hybrid v10.0.2**
+**.NET SDK 10.0.0**
+
+*Apple M3 Max, 1 CPU, 14 logical and 14 physical cores*
+| Method       | ConcurrentCalls | Mean       | Error     | StdDev    | Ratio | RatioSD | Gen0     | Gen1     | Allocated  | Alloc Ratio |
+|------------- |---------------- |-----------:|----------:|----------:|------:|--------:|---------:|---------:|-----------:|------------:|
+| CacheService | 1               |   189.7 us |   3.77 us |   3.70 us |  1.00 |    0.03 |   1.9531 |   0.4883 |   15.76 KB |        1.00 |
+| HybridCache  | 1               |   194.7 us |   3.64 us |   3.41 us |  1.03 |    0.03 |   3.9063 |   0.9766 |   24.76 KB |        1.57 |
+| CacheService | 10              |   471.7 us |   9.37 us |  12.51 us |  1.00 |    0.04 |  19.5313 |   5.8594 |  156.91 KB |        1.00 |
+| HybridCache  | 10              |   500.8 us |   9.87 us |  13.51 us |  1.06 |    0.04 |  35.1563 |   9.7656 |  247.54 KB |        1.58 |
+| CacheService | 100             | 2,838.7 us |  56.62 us | 102.10 us |  1.00 |    0.05 | 195.3125 |  85.9375 | 1567.08 KB |        1.00 |
+| HybridCache  | 100             | 3,261.0 us | 119.47 us | 241.33 us |  1.15 |    0.09 | 343.7500 |  93.7500 | 2472.64 KB |        1.58 |
+| CacheService | 200             | 5,269.5 us |  80.82 us |  67.49 us |  1.00 |    0.02 | 390.6250 | 125.0000 | 3134.97 KB |        1.00 |
+| HybridCache  | 200             | 6,115.3 us | 116.60 us | 109.07 us |  1.16 |    0.02 | 703.1250 | 242.1875 | 4944.25 KB |        1.58 |
+
+Old results with the previous versions of the libraries:
+
 **Microsoft.Extensions.Caching.Hybrid v9.0.0-preview.9.24556.5**
 **.NET SDK 10.0.0**
 
